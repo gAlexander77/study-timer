@@ -1,32 +1,54 @@
 import React, { useState, useEffect } from 'react';
+import '../styles/components/Timer.css'
 
 function Timer(props) {
 
-    const [timer, setTimer] = useState(1000);
-    const [intialTime, setInitialTime] = useState(1000);
-
+    const [timer, setTimer] = useState(0);
+    const [intialTime, setInitialTime] = useState(0);
 
     useEffect(() => {
-        // Declare an interval that updates the timer every second
-        const interval = setInterval(() => {
-          setTimer(timer - 1);
-        }, 1000);
-        
-        // Clear the interval when the timer reaches 0
-        if (timer === 0) {
-            clearInterval(interval);
+        if(props.isBreak === true) {
+            props.setTimerIsOn(false);
+            setTimer(300);
+            setInitialTime(300);
+        }
+        else if(props.isBreak === false) {
+            props.setTimerIsOn(false);
+            setTimer(1800);
+            setInitialTime(1800);
+        }
+    }, [props.isBreak]);
+
+    useEffect(() => {
+        if(props.timerIsOn === true){ 
+            // Declare an interval that updates the timer every second
+            const interval = setInterval(() => {
+            setTimer(timer - 1);
+            }, 1000);
+            
+            // Clear the interval when the timer reaches 0
+            if (timer === 0) {
+                clearInterval(interval);
+                props.setIsBreak(!props.isBreak);
+            }
+            // Clean up the interval when the component unmounts
+            return () => clearInterval(interval);
+        }   
+    }, [timer, props.timerIsOn]);
+    
+    function TimerOptions(){
+
+        const studyStyle = {
+            backgroundColor: `${props.isBreak ? '' : 'rgba(0, 0, 0, 0.233)'}`
         }
 
-        // Clean up the interval when the component unmounts
-        return () => clearInterval(interval);
-      }, [timer]);
-    
-
-    function TimerOptions(){
+        const breakStyle = {
+            backgroundColor: `${props.isBreak ? 'rgba(0, 0, 0, 0.233)' : ''}`
+        }
         return(
             <div className="timer-options-container">
-                <button>Study</button>
-                <button>Break</button>
+                <button style={studyStyle} className="mode-btn" onClick={()=>props.setIsBreak(false)}>Study</button>
+                <button style={breakStyle} className="mode-btn" onClick={()=>props.setIsBreak(true)}>Break</button>
             </div>
         );
     }
@@ -44,7 +66,14 @@ function Timer(props) {
 
         return(
             <div className="display-time-container">
-                <p>{minutes}:{seconds}</p>
+                {minutes>=10 ? 
+                    <p className="timer-text">{minutes}:</p> : 
+                    <p className="timer-text">0{minutes}:</p>
+                }
+                {seconds>=10 ? 
+                    <p className="timer-text">{seconds}</p> : 
+                    <p className="timer-text">0{seconds}</p>
+                }
             </div>
         );
     }
@@ -63,17 +92,18 @@ function Timer(props) {
         }
 
         const styleOutter = {
-            backgroundColor: 'grey',
+            backgroundColor: 'rgba(0, 0, 0, 0.100)',
             width: '375px',
             height: '12px',
-            borderRadius: 10
+            borderRadius: '10px',
+            overflow: 'hidden',
         }
 
         const style = {
             backgroundColor: 'white',
             width: `${progress}%`,
             height: '100%',
-            borderRadius: 10,
+            borderRadius: '10px',
             index: '10'
         }
 
@@ -87,18 +117,31 @@ function Timer(props) {
     }
 
     function StartAndStop(){
+
+        const textColor = {
+            color: `${props.isBreak ? '#9C92B0' : '#227C6C'}`
+        }
+
         return(
             <div>
-                <button>Start</button>
+                <button 
+                    className="toggle-btn"
+                    style={textColor}
+                    onClick={()=>props.setTimerIsOn(!props.timerIsOn)}>
+                    {props.timerIsOn ? 'STOP' : 'START'}
+                </button>
             </div>
         );
     }
 
     return(
         <div className="timer">
-            <TimerOptions/>
-            <DisplayTime/>
-            <ProgressBar/>
+            <div className="timer-container">    
+                <TimerOptions/>
+                <DisplayTime/>
+                <ProgressBar/>
+                <StartAndStop/>
+            </div>
         </div>
     );
 }

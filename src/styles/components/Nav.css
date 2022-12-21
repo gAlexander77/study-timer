@@ -1,0 +1,47 @@
+.nav {
+    display: flex;
+    margin-top: 10px;
+    /*background-color: violet;*/
+}
+
+.title {
+    margin-left: 2%;
+    font-size: 34px;
+    font-weight: bold;
+    color: white;
+}
+
+.menu {
+    margin-left: auto;
+    margin-right: 2%;
+    align-self: center;
+}
+
+.menu-btn {
+    all: unset;
+    margin-left: 10px;
+    background-color: rgba(255, 255, 255, 0.082);
+    color: white;
+    padding: 7px 10px;
+    border-radius: 5px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.menu-btn:hover {
+    background-color: rgba(255, 255, 255, 0.223);
+}
+
+.settings-icon {
+    position: relative;
+    top: 3px;
+    right: 2px;
+    font-size: 18px;
+}
+
+.stats-icon {
+    position: relative;
+    top: 3px;
+    right: 2px;
+    font-size: 18px;
+}
