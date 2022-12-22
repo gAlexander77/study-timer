@@ -1,0 +1,132 @@
+.settings-outer {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    
+    position: absolute;
+    top: 0;
+    z-index: 99;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings-inner {
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    width: 500px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.setting-title {
+    margin-top: 10px;
+    margin-left: 20px;
+    font-weight: 600;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    border-top: 2px solid rgb(90, 90, 90);
+    border-bottom: 2px solid rgb(90, 90, 90);
+    
+    margin-top: 10px;
+    margin-bottom: 65px;
+    margin-right: 20px;
+    margin-left: 20px;
+
+    padding: 20px 0px;
+}
+
+.study-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 130px;
+}
+
+.study-label {
+    font-weight: 500;
+}
+
+.mins-input-container {
+    position: relative;
+    margin-top: 2px;
+}
+
+.study-input {
+    all: unset;
+    width: 50px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 10px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.break-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 130px;
+    margin-top: 20px;
+}
+
+.break-label {
+    font-weight: 500;
+}
+
+.break-input {
+    all: unset;
+    width: 50px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 10px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.minutes-tag {
+    position: absolute;
+    top: 3px;
+    right: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.842);
+}
+
+.settings-button-container {
+    position: absolute;
+    bottom: 12px;
+    right: 20px;
+}
+
+.cancel-btn {
+    all: unset;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+
+    padding: 3px 7px;
+
+    margin-right: 10px;
+}
+
+.save-btn {
+    all: unset;
+    border: 1px solid black;
+    border-radius: 5px;
+
+    padding: 3px 7px;
+
+    cursor: pointer;
+}
+

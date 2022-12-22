@@ -7,15 +7,19 @@ function Timer(props) {
     const [intialTime, setInitialTime] = useState(0);
 
     useEffect(() => {
+        
+        const d = new Date();
+        console.log(`${d.getMonth()}-${d.getDate()}-${d.getFullYear()}`)
+        
         if(props.isBreak === true) {
             props.setTimerIsOn(false);
-            setTimer(300);
-            setInitialTime(300);
+            setTimer(props.breakTime);
+            setInitialTime(props.breakTime);
         }
         else if(props.isBreak === false) {
             props.setTimerIsOn(false);
-            setTimer(1800);
-            setInitialTime(1800);
+            setTimer(props.studyTime);
+            setInitialTime(props.studyTime);
         }
     }, [props.isBreak]);
 
@@ -35,6 +39,24 @@ function Timer(props) {
             return () => clearInterval(interval);
         }   
     }, [timer, props.timerIsOn]);
+
+    // Updates timer
+    useEffect(() => {
+        if(props.timerIsOn === false && props.updated === false) {
+            if(props.isBreak === true) {
+                props.setTimerIsOn(false);
+                setTimer(props.breakTime);
+                setInitialTime(props.breakTime);
+                props.setUpdated(true);
+            }
+            else if(props.isBreak === false)  {
+                props.setTimerIsOn(false);
+                setTimer(props.studyTime);
+                setInitialTime(props.studyTime);
+                props.setUpdated(true)
+            }
+        }
+    }, [props.updated, props.timerIsOn]);
     
     function TimerOptions(){
 
@@ -103,7 +125,6 @@ function Timer(props) {
             backgroundColor: 'white',
             width: `${progress}%`,
             height: '100%',
-            borderRadius: '10px',
             index: '10'
         }
 
