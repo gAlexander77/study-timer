@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/components/Timer.css'
+import AlarmSound from '../assets/Alarm.mp3'
 
 function Timer(props) {
 
@@ -33,6 +34,9 @@ function Timer(props) {
             // Clear the interval when the timer reaches 0
             if (timer === 0) {
                 clearInterval(interval);
+                const alarm = new Audio(AlarmSound);
+                alarm.volume = 0.45;
+                alarm.play();
                 props.setIsBreak(!props.isBreak);
             }
             // Clean up the interval when the component unmounts
