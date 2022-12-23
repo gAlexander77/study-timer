@@ -3,9 +3,11 @@ import { Helmet, HelmetData } from 'react-helmet-async';
 import Nav from '../components/Nav';
 import Timer from '../components/Timer';
 import Settings from '../components/Settings';
+import Stats from '../components/Stats';
 import '../styles/pages/Home.css';
 
 function Home(){
+    
     const [isBreak, setIsBreak] = useState(false);
     const [timerIsOn, setTimerIsOn] = useState(false);
     const [studyTime, setStudyTime] = useState(1800);
@@ -47,6 +49,10 @@ function Home(){
                 setBreakTime={setBreakTime}
                 updated={updated}
                 setUpdated={setUpdated}
+            />
+            <Stats
+                trigger={stats}
+                setTrigger={setSettings}
             />
         </div>
     );

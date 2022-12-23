@@ -1,0 +1,23 @@
+.stats-outer {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    
+    position: absolute;
+    top: 0;
+    z-index: 99;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stats-inner {
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    width: 500px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}

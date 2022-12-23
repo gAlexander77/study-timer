@@ -6,12 +6,35 @@ function Timer(props) {
 
     const [timer, setTimer] = useState(0);
     const [intialTime, setInitialTime] = useState(0);
+    
+    const d = new Date();
+    const today = `${d.getMonth()}-${d.getDate()}-${d.getFullYear()}`;
+    
+    const [secondsStudied, setSecondsStudied] = useState(0);
+    
+    useEffect(() =>{
+        if(localStorage.getItem('seconds') === null || localStorage.getItem('date') === null) {
+            if(localStorage.getItem('seconds')===null) {
+                localStorage.setItem('seconds', 0);
+                setSecondsStudied(0);
+            }
+            if(localStorage.getItem('date')===null) {            
+                localStorage.setItem('date', today);
+            }
+        }
+        else {
+            if (localStorage.getItem('date') !== today) {
+                localStorage.setItem('date', today);
+                localStorage.setItem('seconds', 0);
+                setSecondsStudied(0);
+            }
+            else {
+                setSecondsStudied(parseInt(localStorage.getItem('seconds')));
+            }
+        }
+    },[])
 
     useEffect(() => {
-        
-        const d = new Date();
-        console.log(`${d.getMonth()}-${d.getDate()}-${d.getFullYear()}`)
-        
         if(props.isBreak === true) {
             props.setTimerIsOn(false);
             setTimer(props.breakTime);
@@ -25,10 +48,14 @@ function Timer(props) {
     }, [props.isBreak]);
 
     useEffect(() => {
-        if(props.timerIsOn === true){ 
+        if(props.timerIsOn === true) { 
             // Declare an interval that updates the timer every second
             const interval = setInterval(() => {
             setTimer(timer - 1);
+            if(props.isBreak === false) {
+                setSecondsStudied(secondsStudied+1);
+                localStorage.setItem('seconds', secondsStudied);
+            }
             }, 1000);
             
             // Clear the interval when the timer reaches 0
@@ -53,7 +80,7 @@ function Timer(props) {
                 setInitialTime(props.breakTime);
                 props.setUpdated(true);
             }
-            else if(props.isBreak === false)  {
+            else if(props.isBreak === false) {
                 props.setTimerIsOn(false);
                 setTimer(props.studyTime);
                 setInitialTime(props.studyTime);
