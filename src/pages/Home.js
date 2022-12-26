@@ -52,7 +52,7 @@ function Home(){
             />
             <Stats
                 trigger={stats}
-                setTrigger={setSettings}
+                setTrigger={setStats}
             />
         </div>
     );

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/components/Stats.css';
-
+import { FaTimes } from "react-icons/fa";
+import { ImFire } from "react-icons/im";
 function Stats(props){
 
     const [time, setTime] = useState(0);
@@ -19,14 +20,23 @@ function Stats(props){
         }
     },[props.trigger])
 
-    
-
     return(props.trigger) ? (
         <div className="stats-outer">
             <div className="stats-inner">
-                <h1>Today you have studied for</h1>
-                <h1>a total of</h1>
-                {hours===0 ? <p>{minutes} minutes</p> : <p>{hours} hours & {minutes} minutes</p>}
+                <FaTimes className="stats-exit-btn" onClick={() => props.setTrigger(!props.trigger)}/>
+                <h1 className="stats-header-1">Today you have studied for</h1>
+                <h1 className="stats-header-2">a total of</h1>
+                {hours===0 ? 
+                    <>
+                        {minutes !== 1 ? <p className="stats-display">{minutes} minutes</p>: 
+                        <p className="stats-display">{minutes} minute</p>}
+                    </>: 
+                    <>
+                        { hours > 1 ? <p className="stats-display">{hours} hours & {minutes} minutes</p>: 
+                        <p className="stats-display">{hours} hour & {minutes} minutes</p>}
+                    </>
+                }
+                <ImFire className="stats-fire-icon"/>
             </div>
         </div>
     ) : '';
