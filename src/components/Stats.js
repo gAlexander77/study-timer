@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/components/Stats.css';
 import { FaTimes } from "react-icons/fa";
-import { ImFire } from "react-icons/im";
+import { ImFire } from 'react-icons/im';
+import '../styles/components/Stats.css';
+
 function Stats(props){
 
     const [time, setTime] = useState(0);

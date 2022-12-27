@@ -1,6 +1,6 @@
 import React from 'react';
-import '../styles/components/Nav.css';
 import { FiSettings, FiBarChart } from 'react-icons/fi';
+import '../styles/components/Nav.css';
 
 export default function Nav(props){
     return(

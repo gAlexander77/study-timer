@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/components/Timer.css'
-import AlarmSound from '../assets/Alarm.mp3'
+import AlarmSound from '../assets/Alarm.mp3';
+import '../styles/components/Timer.css';
 
 function Timer(props) {
 
@@ -62,7 +62,7 @@ function Timer(props) {
             if (timer === 0) {
                 clearInterval(interval);
                 const alarm = new Audio(AlarmSound);
-                alarm.volume = 0.45;
+                alarm.volume = props.alarmVolume;
                 alarm.play();
                 props.setIsBreak(!props.isBreak);
             }

@@ -14,6 +14,7 @@ function Home(){
     const [breakTime, setBreakTime] = useState(300);
     const [settings, setSettings] = useState(false);
     const [stats, setStats] = useState(false);
+    const [alarmVolume, setAlarmVolume] = useState(0.45);
 
     const [updated, setUpdated] = useState(true);
     
@@ -39,6 +40,7 @@ function Home(){
                 breakTime = {breakTime}
                 updated={updated}
                 setUpdated={setUpdated}
+                alarmVolume={alarmVolume}
             />
             <Settings
                 trigger={settings}
@@ -49,6 +51,8 @@ function Home(){
                 setBreakTime={setBreakTime}
                 updated={updated}
                 setUpdated={setUpdated}
+                alarmVolume={alarmVolume}
+                setAlarmVolume={setAlarmVolume}
             />
             <Stats
                 trigger={stats}
